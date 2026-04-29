@@ -16,5 +16,30 @@ namespace Hospital_Management_System
         {
             InitializeComponent();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            string userID = txtUserID.Text;
+            string password = txtPassword.Text;
+
+            if (userID == "101" && password == "1234")
+            {
+                MessageBox.Show("Login Successful!");
+
+                //AdminDashboard dashboard = new AdminDashboard();
+                //dashboard.Show();
+                //this.Hide();
+
+            }
+            else
+            {
+                MessageBox.Show("Invalid User ID or Password.");
+            }
+        }
+
+        private void txtUserID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
