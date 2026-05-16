@@ -96,7 +96,7 @@ namespace Hospital_Management_System.Forms
 
         private void dgvPatients_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvPatients.Rows[e.RowIndex];
@@ -113,13 +113,33 @@ namespace Hospital_Management_System.Forms
 
         private void Patients_Load(object sender, EventArgs e)
         {
+            LoadPatients();
+
+            cmbGender.Items.Add("Male");
+            cmbGender.Items.Add("Female");
+            cmbGender.Items.Add("Other");
+            cmbBloodGroup.Items.Add("A+");
+            cmbBloodGroup.Items.Add("A-");
+            cmbBloodGroup.Items.Add("B+");
+            cmbBloodGroup.Items.Add("B-");
+            cmbBloodGroup.Items.Add("O+");
+            cmbBloodGroup.Items.Add("O-");
+            cmbBloodGroup.Items.Add("AB+");
+            cmbBloodGroup.Items.Add("AB-");
+
+
+
+        }
+
+        private void LoadPatients()
+        {
             var sql = "select * from users order by id desc";
 
             var rr = dataAccess.Execute(sql);
             var rows = rr.Rows;
 
             var employeeList = rr.Rows.Cast<DataRow>()
-                .Select(row => new 
+                .Select(row => new
                 {
                     PatientId = Convert.ToInt32(row["Id"]),
                     FirstName = row["FirstName"].ToString(),
@@ -147,21 +167,6 @@ namespace Hospital_Management_System.Forms
 
             //dgvPatients.DataSource = patientTable;
             dgvPatients.DataSource = employeeList;
-
-            cmbGender.Items.Add("Male");
-            cmbGender.Items.Add("Female");
-            cmbGender.Items.Add("Other");
-            cmbBloodGroup.Items.Add("A+");
-            cmbBloodGroup.Items.Add("A-");
-            cmbBloodGroup.Items.Add("B+");
-            cmbBloodGroup.Items.Add("B-");
-            cmbBloodGroup.Items.Add("O+");
-            cmbBloodGroup.Items.Add("O-");
-            cmbBloodGroup.Items.Add("AB+");
-            cmbBloodGroup.Items.Add("AB-");
-
-
-
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -169,7 +174,7 @@ namespace Hospital_Management_System.Forms
             if (dgvPatients.CurrentRow == null)
             {
                 MessageBox.Show("Please select a patient first");
-                return;
+            return;
             }
 
             DataGridViewRow row = dgvPatients.CurrentRow;
@@ -193,7 +198,17 @@ namespace Hospital_Management_System.Forms
                 return;
             }
 
-            dgvPatients.Rows.Remove(dgvPatients.CurrentRow);
+            // dgvPatients.Rows.Remove(dgvPatients.CurrentRow);
+            DataGridViewRow row = dgvPatients.Rows[dgvPatients.CurrentRow.Index];
+            var rmId = row.Cells[0].Value.ToString();
+
+            
+
+            string sql = $"Delete from Users where Id = {rmId}";
+
+            var rr = dataAccess.Execute(sql);
+
+            LoadPatients();
 
             MessageBox.Show("Patient deleted successfully");
             ClearFields();

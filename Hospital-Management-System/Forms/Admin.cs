@@ -30,24 +30,24 @@ namespace Hospital_Management_System.Forms
 
         private void btnAppointments_Click(object sender, EventArgs e)
         {
-             MessageBox.Show("Appointments form open");
-             this.Hide();
+            // MessageBox.Show("Appointments form open");
+             //this.Hide();
              Appointments ap = new Appointments();
             ap.Show();
         }
 
         private void btnBilling_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Billing form open");
-            this.Hide();
+           // MessageBox.Show("Billing form open");
+           // this.Hide();
             Billing bp = new Billing();
             bp.Show();
         }
 
         private void btnUserManagement_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("User Management form open");
-            this.Hide();
+           // MessageBox.Show("User Management form open");
+            //this.Hide();
             UserManagement um = new UserManagement();
             um.Show();
         }

@@ -68,10 +68,10 @@ namespace Hospital_Management_System
                 MessageBox.Show("Welcome patient!");
 
             }
-            else
-            {
-                MessageBox.Show("Invalid User ID or Password.");
-            }
+           // else
+            //{
+            //    MessageBox.Show("Invalid User ID or Password.");
+            //}
         }
 
         private void txtUserID_TextChanged(object sender, EventArgs e)

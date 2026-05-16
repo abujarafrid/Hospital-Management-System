@@ -28,11 +28,11 @@ namespace Hospital_Management_System.Forms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (txtAppointmentId.Text.Trim() == "")
-            {
-                MessageBox.Show("Please enter patient id");
-                return;
-            }
+            //if (txtAppointmentId.Text.Trim() == "")
+            //{
+            //    MessageBox.Show("Please enter patient id");
+            //    return;
+            //}
             string appointmentId = txtAppointmentId.Text.Trim();
             string patientName = cmbPatientName.Text.Trim();
             string doctor = cmbDoctor.Text.Trim();
@@ -70,7 +70,20 @@ namespace Hospital_Management_System.Forms
 
         private void dgvAppointments_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            var sql = "select * from Appointments";
+            var Ap = dataAccess.Execute(sql);
+            var Rows = Ap.Rows;
+            var employeelist = Ap.Rows.Cast< DataRow>().Select(row => new
+            {
+                Id = row["Id"],
+                Patient = row["Patient"],
+                Doctor = row["Doctor"],
+                Date = row["Date"],
+                Problem = row["Problem"],
+                Status = row["Status"],
+                Note = row["Note"]
+            }).ToList();
+             dgvAppointments.DataSource = employeelist;
         }
     }
 }
