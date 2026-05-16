@@ -13,12 +13,13 @@ namespace Hospital_Management_System
 {
     public class DataAccess
     {
-        public static string CONNECTION_STRING = ConfigurationManager.ConnectionStrings["smsdb"].ConnectionString;
+        //public static string CONNECTION_STRING = ConfigurationManager.ConnectionStrings["smsdb"].ConnectionString;
+        public  string CONNECTION_STRING = "Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True;Initial Catalog=HospitalManagementSystem;Pooling=False;MultipleActiveResultSets=False;TrustServerCertificate=False;";
 
         //This returns the connection string  
-        private static string _connectionString = string.Empty;
+        private  string _connectionString = string.Empty;
 
-        public static string ConnectionString
+        public  string ConnectionString
         {
             get
             {
@@ -41,7 +42,8 @@ namespace Hospital_Management_System
             AppDomain.CurrentDomain.SetData("DataDirectory", Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..")));
             //Path.Combine(Application.StartupPath, ".."));
 
-            string connStr = (ConfigurationManager.ConnectionStrings["smsdb"].ConnectionString);
+            //string connStr = (ConfigurationManager.ConnectionStrings["smsdb"].ConnectionString);
+            string connStr = "Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True;Initial Catalog=HospitalManagementSystem;Pooling=False;MultipleActiveResultSets=False;TrustServerCertificate=False;";
             CONNECTION_STRING = connStr;
         }
 
